@@ -51,3 +51,8 @@ Click a product photo, title, or View item details to open its detail view on th
 The importer accepts a seller-provided CSV or JSON inventory export. It rejects mismatched unique item counts, duplicate item IDs, missing image URLs, unsupported currency, and (with the flag above) missing descriptions. Only customer-facing fields are copied; buyer contact/order fields are discarded. It reports listings needing category review. It can reuse already captured photos for the same item IDs. A basic active-listings report may omit photos and descriptions; do not promise that such a report alone supplies the complete product content. No full 357-item source file is currently available.
 
 After a validated import, review the output, publish the snapshot to the inventory-data branch and the static fallback, then deploy the frontend if needed. Seller exports are manual snapshots, not automatic eBay account connections. They are labeled and expire after 24 hours. Automated API snapshots expire after 90 minutes if syncing stops.
+
+
+## Public CardScout integration
+
+`public/cardscout/` is a public copy of CardScout’s 16 source-linked research products and comparison/filtering engine. A compact storefront banner links to `/cardscout/`. It uses Hobby Reserve branding and retains the November 11, 2026 research-snapshot notice; no live market feed is claimed. Visitor watchlists, custom entries, and overrides are stored only in that visitor’s browser, under a separate Hobby Reserve storage namespace. No owner watchlist or local private inputs were copied. The original owner-private CardScout Site remains private and unchanged.

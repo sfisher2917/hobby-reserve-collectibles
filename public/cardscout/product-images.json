@@ -1,0 +1,95 @@
+{
+  "select-mega": {
+    "file": "select-mega.webp",
+    "url": "https://i5.walmartimages.com/seo/25-PANINI-SELECT-FOOTBALL-MEGA-BOX_deb7898e-6b67-4c17-8714-7ddad55ab351.6e9e1124b3d946e5b4cd87ff1f51bf39.jpeg",
+    "source": "https://www.walmart.com/ip/19444612939?conditionGroupCode=4",
+    "credit": "Walmart product listing"
+  },
+  "score-hobby": {
+    "file": "score-hobby.webp",
+    "url": "https://tradingcardmarket.com/cdn/shop/files/2025PaniniScoreFootballHobbyBox.jpg?v=1746630884&width=1946",
+    "source": "https://tradingcardmarket.com/products/2025-panini-score-football-hobby-box",
+    "credit": "Trading Card Market"
+  },
+  "select-h2": {
+    "file": "select-h2.webp",
+    "url": "https://rlsportscards.com/cdn/shop/files/2025_Panini_Select_Football_Hobby_H2_Box.png?v=1771551119",
+    "source": "https://rlsportscards.com/products/2025-panini-select-football-hobby-h2-box",
+    "credit": "RL Sports Cards"
+  },
+  "prizm-hobby": {
+    "file": "prizm-hobby.webp",
+    "url": "https://tradingcardmarket.com/cdn/shop/files/2025PaniniPrizmFootballHobbyBox.jpg?v=1760027942",
+    "source": "https://tradingcardmarket.com/products/2025-panini-prizm-football-hobby-box",
+    "credit": "Trading Card Market"
+  },
+  "select-blaster": {
+    "file": "select-blaster.webp",
+    "url": "https://slabstat-production.s3.amazonaws.com/Listings/2025-panini-select-football-6-pack-blaster-box-red-blue-prizms.jpg",
+    "source": "https://www.waxstat.com/boxes/2025-panini-select-football-6-pack-blaster-box-red-blue-prizms",
+    "credit": "Waxstat product listing"
+  },
+  "score-blaster": {
+    "file": "score-blaster.webp",
+    "url": "https://republicjewelry.com/cdn/shop/files/s-l1600_e1f25783-68dd-47d1-aed1-d0e85de08a45.webp?v=1762800774&width=1080",
+    "source": "https://republicjewelry.com/products/2025-panini-score-football-6-pack-blaster-box",
+    "credit": "Republic Jewelry & Collectibles"
+  },
+  "chrome-baseball-hobby": {
+    "file": "chrome-baseball-hobby.webp",
+    "url": "https://tradingcardmarket.com/cdn/shop/files/2025ToppsChromeBaseballHobbyBox.jpg?v=1751567034&width=1445",
+    "source": "https://tradingcardmarket.com/products/2025-topps-chrome-baseball-hobby-box",
+    "credit": "Trading Card Market"
+  },
+  "chrome-baseball-blaster": {
+    "file": "chrome-baseball-blaster.webp",
+    "url": "https://thecollectionrealm.com/cdn/shop/files/medium_0191ba3a-d76d-4ec0-8a66-7c4bb3087594.jpg?v=1753800192",
+    "source": "https://thecollectionrealm.com/products/topps-chrome-baseball-2025-blaster-box",
+    "credit": "Collection Realm"
+  },
+  "chrome-baseball-retail": {
+    "sameAs": "chrome-baseball-blaster"
+  },
+  "chrome-update-baseball": {
+    "file": "chrome-update-baseball.webp",
+    "url": "https://www.thecardiacs.com/cdn/shop/files/2300b08c-e3de-49a0-aa2f-56da10992cea.png?v=1771941058",
+    "source": "https://www.thecardiacs.com/products/2025-topps-chrome-upate-series-baseball-blaster-box",
+    "credit": "CARDIACS Sports & Memorabilia"
+  },
+  "chrome-basketball-hanger": {
+    "file": "chrome-basketball-hanger.webp",
+    "url": "https://tradingcardmarket.com/cdn/shop/files/202526ToppsChromeBasketballHangerBox.jpg?v=1770408178",
+    "source": "https://tradingcardmarket.com/products/2025-26-topps-chrome-basketball-hanger-box",
+    "credit": "Trading Card Market"
+  },
+  "chrome-basketball-blaster": {
+    "file": "chrome-basketball-blaster.webp",
+    "url": "http://tradingcardmarket.com/cdn/shop/files/2025-26_Topps_Chrome_Basketball_Blaster_Box.jpg?v=1766068029",
+    "source": "https://tradingcardmarket.com/products/2025-26-topps-chrome-basketball-blaster-box",
+    "credit": "Trading Card Market"
+  },
+  "chrome-basketball-pack": {
+    "file": "chrome-basketball-pack.webp",
+    "url": "https://dacardworld1.imgix.net/26tcbk_fgc6471se_72ea_73cee_vbx_fge1126coll_wrap.jpg?auto=format%2Ccompress&fm=jpg&h=1800&ixlib=php-3.3.1&s=36cfab398e435787cfa6ac54c8e628d7&w=1800",
+    "source": "https://www.dacardworld.com/sports-cards/2025-26-topps-chrome-basketball-blaster-pack",
+    "credit": "Dave & Adam’s"
+  },
+  "chrome-basketball-hobby": {
+    "file": "chrome-basketball-hobby.webp",
+    "url": "https://www.jaspys.com/cdn/shop/files/2025-26-topps-chrome-basketball-hobby-12-box-case__77960.jpg?v=1766076892&width=1214",
+    "source": "https://www.jaspys.com/products/2025-26-topps-chrome-basketball-hobby-box",
+    "credit": "Jaspy’s Sports Cards"
+  },
+  "chrome-basketball-delight": {
+    "file": "chrome-basketball-delight.webp",
+    "url": "https://columbiasportscard.com/cdn/shop/files/202526-topps-chrome-basketball-breaker-delight-box-columbia-sports-cards-5021167.jpg?v=1767137778",
+    "source": "https://columbiasportscard.com/products/2025-26-topps-chrome-basketball-breaker-delight-box-columbia-sports-cards",
+    "credit": "Columbia Sports Cards"
+  },
+  "chrome-update-hobby": {
+    "file": "chrome-update-hobby.webp",
+    "url": "https://cdn11.bigcommerce.com/s-a0ebd/images/stencil/original/products/8759/22848/2025-topps-chrome-update-series-baseball-hobby-box__08003.1763058964.jpg?c=2",
+    "source": "https://www.diamondcardsonline.com/2025-topps-chrome-update-series-baseball-hobby-box/",
+    "credit": "Diamond Cards Online"
+  }
+}
