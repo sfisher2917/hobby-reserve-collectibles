@@ -8,7 +8,8 @@ export function chaseMid(d){return d.chase && Number.isFinite(d.chase.low)&&Numb
 const clamp=x=>Math.max(0,Math.min(100,x));
 export function metrics(d,opts={}){
  const price=effectivePrice(d,opts);
- if(price===null||d.sport==='TCG'||['announced','preorder','soldout'].includes(d.status))return {price:null,score:null,components:{}};
+ if(price===null)return {price:null,score:null,components:{}};
+ if(d.sport==='TCG'||['announced','preorder','soldout'].includes(d.status)){const ref=d.reference??d.retail;return {price,score:null,components:{},costPerAuto:d.autos>0?price/d.autos:null,discount:ref>0?(ref-price)/ref*100:null};}
  const ref=d.reference??d.retail;
  const components={reference:ref>0?clamp(50+100*(ref-price)/ref):0,autos:clamp(d.autos*10000/price),budget:10000/(100+price),chase:chaseMid(d)!==null?clamp(chaseMid(d)/price*10):0};
  const w=opts.weights??DEFAULT_WEIGHTS;
