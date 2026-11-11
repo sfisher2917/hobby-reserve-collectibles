@@ -1,2 +1,42 @@
-# hobby-reserve-collectibles
-Hobby Reserve Collectibles storefront — Quality Card. Trusted Service.
+# Hobby Reserve Collectibles
+
+Premium black and metallic gold storefront using the original Hobby Reserve logo. Quality Cards. Trusted Service.
+
+## Status
+
+The storefront is ready for deployment. On-site inventory stays in an honest connection-pending state until seller authorization succeeds. No sample products or historical prices are presented as active stock. All checkout stays on eBay.
+
+## Seller authorization (one-time)
+
+1. Use an approved production application in the eBay Developers Program. Obtain seller consent for the production Trading API OAuth scope `https://api.ebay.com/oauth/api_scope`. Obtain a refresh token using the official authorization-code flow. Developer program enrollment/key approval may be required by eBay. Do not paste keys into chat or commit them.
+2. In this repository's Settings → Secrets and variables → Actions, save secrets `EBAY_CLIENT_ID`, `EBAY_CLIENT_SECRET`, and `EBAY_REFRESH_TOKEN`.
+3. Set repository variable `EBAY_SELLER_ID` to the exact seller username if different from `hobbyreservecollectibles`. The exporter verifies the authorized seller before publishing any data.
+4. Optionally set `FEATURED_ITEM_IDS` to comma-separated eBay item IDs. Only selected active items receive the Featured badge. Nothing is promoted as featured without this selection.
+5. Run Actions → Refresh eBay inventory → Run workflow. Verify a successful export and compare its count and sample items with eBay. Production live API testing remains pending until credentials are configured.
+
+## Inventory design
+
+- Read-only Trading API: `GetUser`, paginated `GetMyeBaySelling.ActiveList`, and `GetItem` for descriptions and full photos. Does not create listings, change prices, access payments, or place orders.
+- Full snapshots replace prior inventory, removing sold/ended/removed items after the next successful sync. This is periodic polling, not instantaneous webhooks.
+- Sync runs at minutes 7 and 37 each hour. GitHub schedules can be delayed. Browser refreshes the data every five minutes and hides snapshots older than 90 minutes; ended listings are hidden locally as well. Availability is always confirmed on eBay.
+- Public inventory is stored on `inventory-data`, read from raw.githubusercontent.com; main hosts code and static assets. Data pushes do not redeploy the static host. Descriptions are plain text, never executed HTML. Credentials exist only in GitHub encrypted secrets and runner process memory.
+- Description/photo details are cached for up to 24 hours. Prices and active status refresh every run. Initial sync calls GetItem for every active item; check your eBay application's call quota if inventory grows. Exports stop at the API's 25,000-item cap.
+- Category rules use eBay category names and listing titles; sealed products and memorabilia can also belong to a sport/TCG. Review ambiguous items and adjust `classify()` as needed.
+- GitHub public repositories use standard hosted runners. Keep the repo public to avoid private-runner minute billing; do not enable larger runners. GitHub may disable scheduled workflows after extended repository inactivity; inspect Actions if freshness stops.
+
+## Free hosting
+
+Deploy the `public` directory as a Render Static Site, branch `main`, build command `node scripts/build.mjs`, auto-deploy enabled. No paid web service, database, payment processor, domain, or subscription is needed. The included Render subdomain is sufficient. Render workspace bandwidth/build allowances and billing settings still apply: keep usage limits/spend controls at $0, do not enable paid overages. A free service is not a guarantee of unlimited traffic.
+
+## Local checks
+
+`npm test` checks search, overlapping categories, numeric sorting, featured filtering, expired products, URL safety, category mapping, paginated exports, removal of old inventory, and seller identity validation using synthetic fixtures. `npm run build` validates static deployment assets. No npm or Python dependencies are needed.
+
+Official references:
+- https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/GetMyeBaySelling.html
+- https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/GetItem.html
+- https://developer.ebay.com/api-docs/static/oauth-authorization-code-grant.html
+- https://render.com/docs/static-sites
+
+Instagram: https://www.instagram.com/hobbyreservecollectibles/
+eBay: https://www.ebay.com/str/hobbyreservecollectibles
