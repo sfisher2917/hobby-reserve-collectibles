@@ -1,16 +1,17 @@
 # Deployment handoff
 
-Live URL: https://hobby-reserve-collectibles.onrender.com
 Repository: https://github.com/sfisher2917/hobby-reserve-collectibles
-Render workspace: tea-dbq8lcgae00c73aa2ibg (Stephen’s workspace; user confirmed)
-Render static site: srv-dbqbhtgm7kps73d2mf5g
-Frontend code commit: 04bed1fa868a444b30092eb7380e1740da843279
-Data branch: inventory-data
+Render static service: srv-dbqbhtgm7kps73d2mf5g
+Render workspace: tea-dbq8lcgae00c73aa2ibg (user confirmed)
+Render URL: https://hobby-reserve-collectibles.onrender.com
+Render build is marked live; public HTTP checks still return 404 with x-render-routing: no-server, including after a clean redeploy. Do not claim public storefront availability until HTTP 200 and page content are verified.
+Private review Site: appgprj_6af4baac9ee88191bc69740043b8cdb1
+Expected review URL: https://hobby-reserve-review.bentmacaron1.chatgpt.site (verify deployment result)
 
-Seven automated tests passed locally and in GitHub Actions. Browser checks verified desktop/390px layout and search, numeric sorting, categories, featured filtering with synthetic QA products. QA fixtures were removed and were never pushed or deployed.
+Seven automated tests passed locally and in GitHub Actions. Browser QA verified desktop and 390px layout, search, numeric sorting, overlapping categories, and featured filtering with synthetic fixtures. QA fixtures were removed before publication.
 
-Pending: production eBay application keys and seller OAuth refresh token as GitHub encrypted repository secrets; first real inventory sync and comparison with seller account. No live item-level inventory has been verified. Site shows an honest connection-pending state and directs customers to eBay.
+Pending eBay seller authorization: EBAY_CLIENT_ID, EBAY_CLIENT_SECRET, EBAY_REFRESH_TOKEN in GitHub repository encrypted secrets. No live inventory has been exported or verified. No sample stock is published.
 
-Cost: static service created; no paid compute, database, subscription, or custom domain added. Render account billing/spend controls unverified; dashboard requires sign-in. Render bandwidth overages apply if a payment method exists. Do not claim guaranteed zero future cost until verified.
+Cost controls verified in Render dashboard on 2026-11-11: Hobby plan, no card on file, $0 monthly pipeline spending limit, $0 current and projected charges. No paid service or subscription added.
 
-Deployment: public Git URL integration did not trigger auto deploy after code push, so final frontend deployment was triggered manually. Configure Render’s Git provider for source auto deploy if desired. Inventory data branch updates are independent and never require frontend deployment.
+Data branch inventory-data updates independently of static hosting. Render code auto-deploy has not been observed; use manual deploy until Git provider integration is confirmed.
