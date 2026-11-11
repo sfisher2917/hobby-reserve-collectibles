@@ -4,7 +4,7 @@ Premium black and metallic gold storefront using the original Hobby Reserve logo
 
 ## Status
 
-The storefront is ready for deployment. On-site inventory stays in an honest connection-pending state until seller authorization succeeds. No sample products or historical prices are presented as active stock. All checkout stays on eBay.
+The storefront is deployed at https://hobby-reserve-collectibles.onrender.com. On-site inventory stays in an honest connection-pending state until seller authorization succeeds. No sample products or historical prices are presented as active stock. All checkout stays on eBay.
 
 ## Seller authorization (one-time)
 
@@ -26,7 +26,7 @@ The storefront is ready for deployment. On-site inventory stays in an honest con
 
 ## Free hosting
 
-Deploy the `public` directory as a Render Static Site, branch `main`, build command `node scripts/build.mjs`, auto-deploy enabled. No paid web service, database, payment processor, domain, or subscription is needed. The included Render subdomain is sufficient. Render workspace bandwidth/build allowances and billing settings still apply: keep usage limits/spend controls at $0, do not enable paid overages. A free service is not a guarantee of unlimited traffic.
+Deploy the `public` directory as a Render Static Site, branch `main`, build command `node scripts/build.mjs`, Render currently uses the public repository URL; code changes require a manual deploy through the Render connector/dashboard until its GitHub provider connection is configured. Inventory updates do not require deployment. No paid web service, database, payment processor, domain, or subscription is needed. The included Render subdomain is sufficient. Render workspace bandwidth/build allowances and billing settings still apply: verify the account has no payment method if strict zero spend is required, and set the build pipeline spend limit to $0. Render bandwidth overages can be billed when a payment method exists. Account billing controls have not been verified because dashboard sign-in is required. A free service is not a guarantee of unlimited traffic.
 
 ## Local checks
 
