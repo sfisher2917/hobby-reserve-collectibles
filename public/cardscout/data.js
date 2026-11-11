@@ -1,5 +1,5 @@
-import {RELEASES} from './releases.js';
-import {PHOTOS} from './photos.js';
+import {RELEASES} from './releases.js?v=20261111b';
+import {PHOTOS} from './photos.js?v=20261111b';
 export const SNAPSHOT = '2026-11-11';
 const da = 'https://www.dacardworld.com/sports-cards/';
 const sc = 'https://www.steelcitycollectibles.com/i/';
