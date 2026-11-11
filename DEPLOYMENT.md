@@ -15,3 +15,5 @@ Pending eBay seller authorization: EBAY_CLIENT_ID, EBAY_CLIENT_SECRET, EBAY_REFR
 Cost controls verified in Render dashboard on 2026-11-11: Hobby plan, no card on file, $0 monthly pipeline spending limit, $0 current and projected charges. No paid service or subscription added.
 
 Data branch inventory-data updates independently of static hosting. Render code auto-deploy has not been observed; use manual deploy until Git provider integration is confirmed.
+
+Product detail dialog implemented and tested. Importer supports seller-provided CSV/JSON with an explicit expected-count and optional required-description check. Full 357-item data and descriptions remain unavailable. Never claim completed full import without count, image, and source validation.

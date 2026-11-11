@@ -34,6 +34,24 @@ def text_at(node, path, default=''):
     value = node.find(path, NS)
     return value.text if value is not None and value.text is not None else default
 
+def details_from_item(item, now):
+    images = [n.text for n in item.findall('e:PictureDetails/e:PictureURL', NS) if n.text]
+    if not images:
+        gallery = text_at(item,'e:PictureDetails/e:GalleryURL')
+        images = [gallery] if gallery else []
+    specifics = {}
+    for entry in item.findall('e:ItemSpecifics/e:NameValueList', NS):
+        name = text_at(entry,'e:Name')
+        if name: specifics[name] = [n.text for n in entry.findall('e:Value', NS) if n.text]
+    shipping = []
+    for option in item.findall('e:ShippingDetails/e:ShippingServiceOptions', NS):
+        service = text_at(option,'e:ShippingService')
+        amount = text_at(option,'e:ShippingServiceCost')
+        cost = float(amount) if amount else None
+        if service: shipping.append({'service':service,'cost':cost})
+    returns = [text_at(item,'e:ReturnPolicy/'+field) for field in ['ReturnsAccepted','ReturnsWithin','Refund','ShippingCostPaidBy']]
+    return {'description':plain(text_at(item,'e:Description')),'image':images[0] if images else '', 'images':images,'categoryName':text_at(item,'e:PrimaryCategory/e:CategoryName'),'descriptionUpdatedAt':now.isoformat(),'condition':text_at(item,'e:ConditionDisplayName'),'itemSpecifics':specifics,'shipping':shipping,'returns':' · '.join(filter(None,returns))}
+
 def classify(title, category):
     t = (title + ' ' + category).lower(); result = []
     if re.search(r'\b(sealed|hobby box|blaster|booster box|booster pack|mega box|elite trainer|factory set|breakers delight)\b', t): result.append('Sealed Products')
@@ -102,13 +120,15 @@ def export(api, previous, now):
             found = response.find('e:Item',NS)
             if found is None: raise RuntimeError('An eBay item response was incomplete.')
             if text_at(found,'e:Seller/e:UserID').lower() != seller.lower(): raise RuntimeError('Unexpected seller in item response.')
-            detail = {'description':plain(text_at(found,'e:Description')),'image':text_at(found,'e:PictureDetails/e:PictureURL',text_at(found,'e:PictureDetails/e:GalleryURL')),'categoryName':text_at(found,'e:PrimaryCategory/e:CategoryName'),'descriptionUpdatedAt':now.isoformat()}
+            detail = details_from_item(found,now)
             time.sleep(.15)
         title = text_at(item,'e:Title'); price_node = item.find('e:SellingStatus/e:CurrentPrice',NS)
         if price_node is None or price_node.attrib.get('currencyID') != 'USD': raise RuntimeError('Missing price or unsupported currency; export stopped.')
         price = float(price_node.text)
         if price < 0 or not __import__('math').isfinite(price): raise RuntimeError('Invalid price.')
         p = {**detail,'id':item_id,'title':title,'price':price,'currency':'USD','url':'https://www.ebay.com/itm/'+item_id,'categories':classify(title,detail.get('categoryName','')),'featured':item_id in featured,'startTime':text_at(item,'e:ListingDetails/e:StartTime'),'endTime':text_at(item,'e:ListingDetails/e:EndTime'),'listingType':'auction' if text_at(item,'e:ListingType') in ('Chinese','Dutch') else 'fixed'}
+        available = text_at(item,'e:QuantityAvailable')
+        if available.isdigit(): p['quantity'] = int(available)
         if not p['image']: p['image'] = text_at(item,'e:PictureDetails/e:GalleryURL')
         products.append(p)
     unique = {p['id']:p for p in products}

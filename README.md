@@ -40,3 +40,14 @@ Official references:
 
 Instagram: https://www.instagram.com/hobbyreservecollectibles/
 eBay: https://www.ebay.com/str/hobbyreservecollectibles
+
+
+## On-site product details and seller-provided exports
+
+Click a product photo, title, or View item details to open its detail view on the website. It supports multiple eBay photos, descriptions, condition, item specifics, available quantity, listing format/dates, shipping, and return terms when the source supplies them. Missing fields are identified or omitted, never invented. The public 48-item snapshot has one photo, title, listed price, and item link per item; full descriptions have not been retrieved.
+
+`python3 scripts/import_inventory.py seller-export.csv --expected-count 357 --require-descriptions`
+
+The importer accepts a seller-provided CSV or JSON inventory export. It rejects mismatched unique item counts, duplicate item IDs, missing image URLs, unsupported currency, and (with the flag above) missing descriptions. Only customer-facing fields are copied; buyer contact/order fields are discarded. It reports listings needing category review. It can reuse already captured photos for the same item IDs. A basic active-listings report may omit photos and descriptions; do not promise that such a report alone supplies the complete product content. No full 357-item source file is currently available.
+
+After a validated import, review the output, publish the snapshot to the inventory-data branch and the static fallback, then deploy the frontend if needed. Seller exports are manual snapshots, not automatic eBay account connections. They are labeled and expire after 24 hours. Automated API snapshots expire after 90 minutes if syncing stops.
