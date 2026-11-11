@@ -10,7 +10,7 @@ Expected review URL: https://hobby-reserve-review.bentmacaron1.chatgpt.site (ver
 
 Seven automated tests passed locally and in GitHub Actions. Browser QA verified desktop and 390px layout, search, numeric sorting, overlapping categories, and featured filtering with synthetic fixtures. QA fixtures were removed before publication.
 
-Pending eBay seller authorization: EBAY_CLIENT_ID, EBAY_CLIENT_SECRET, EBAY_REFRESH_TOKEN in GitHub repository encrypted secrets. No live inventory has been exported or verified. No sample stock is published.
+Pending eBay seller authorization: EBAY_CLIENT_ID, EBAY_CLIENT_SECRET, EBAY_REFRESH_TOKEN in GitHub repository encrypted secrets. A partial public snapshot of 48 listings is published. eBay reported 357 store listings; further pages returned a security check. Full seller-authorized inventory and automatic updates remain pending. Category counts: Football 15, Baseball 15, Pokémon 9, Basketball 5, Soccer 3, Other Collectibles 1. No synthetic products are published.
 
 Cost controls verified in Render dashboard on 2026-11-11: Hobby plan, no card on file, $0 monthly pipeline spending limit, $0 current and projected charges. No paid service or subscription added.
 

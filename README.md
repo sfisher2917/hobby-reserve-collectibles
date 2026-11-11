@@ -4,7 +4,7 @@ Premium black and metallic gold storefront using the original Hobby Reserve logo
 
 ## Status
 
-Render reports the deployment live at https://hobby-reserve-collectibles.onrender.com, but public HTTP checks return 404 with x-render-routing: no-server. Public availability is NOT verified. A private review copy is deployed separately. On-site inventory stays in an honest connection-pending state until seller authorization succeeds. No sample products or historical prices are presented as active stock. All checkout stays on eBay.
+Render reports the deployment live at https://hobby-reserve-collectibles.onrender.com, but public HTTP checks return 404 with x-render-routing: no-server. Public availability is NOT verified. A private review copy is deployed separately. A manually retrieved public snapshot contains 48 of the 357 listings reported by the eBay store on November 11, 2026. Further pages returned an eBay security check, so this is a partial catalog. Categories were reviewed from listing titles. Photos, listed prices, and purchase links came from the public store page. Full item descriptions remain on eBay. The snapshot is labeled and hidden after 24 hours; automatic inventory updates still require seller authorization. No synthetic products are presented as stock. All checkout stays on eBay.
 
 ## Seller authorization (one-time)
 
