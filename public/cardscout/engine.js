@@ -8,7 +8,7 @@ export function chaseMid(d){return d.chase && Number.isFinite(d.chase.low)&&Numb
 const clamp=x=>Math.max(0,Math.min(100,x));
 export function metrics(d,opts={}){
  const price=effectivePrice(d,opts);
- if(price===null)return {price:null,score:null,components:{}};
+ if(price===null||d.sport==='TCG'||['announced','preorder','soldout'].includes(d.status))return {price:null,score:null,components:{}};
  const ref=d.reference??d.retail;
  const components={reference:ref>0?clamp(50+100*(ref-price)/ref):0,autos:clamp(d.autos*10000/price),budget:10000/(100+price),chase:chaseMid(d)!==null?clamp(chaseMid(d)/price*10):0};
  const w=opts.weights??DEFAULT_WEIGHTS;
@@ -25,12 +25,15 @@ export function rangeMatch(value,min,max){
 export function filterListings(rows,f={},opts={}){
  return rows.filter(d=>d.licensed===true)
  .filter(d=>!f.sport||f.sport==='All'||d.sport===f.sport)
+ .filter(d=>!f.brand||f.brand==='All'||d.brand===f.brand)
+ .filter(d=>!f.family||f.family==='All'||d.family===f.family)
+ .filter(d=>!f.collection||f.collection==='All'||(f.collection==='upcoming'?['announced','preorder'].includes(d.status):d.collection===f.collection))
  .filter(d=>!f.type||f.type==='All'||d.type===f.type)
  .filter(d=>!f.available||d.status!=='soldout')
  .filter(d=>!f.verified||d.status==='listed')
  .filter(d=>!f.saved||f.savedIds?.includes(d.id))
  .filter(d=>!f.belowRetail||(d.retail>0&&effectivePrice(d,opts)!==null&&effectivePrice(d,opts)<=d.retail))
- .filter(d=>!f.query||`${d.title} ${d.brand} ${d.year} ${d.sport} ${d.source} ${d.chaseNames}`.toLowerCase().includes(f.query.trim().toLowerCase()))
+ .filter(d=>!f.query||`${d.title} ${d.brand} ${d.year} ${d.sport} ${d.source} ${d.family||''} ${d.license||''} ${d.chaseNames}`.toLowerCase().includes(f.query.trim().toLowerCase()))
  .filter(d=>rangeMatch(effectivePrice(d,opts),f.priceMin,f.priceMax))
  .filter(d=>rangeMatch(d.asking,f.askMin,f.askMax))
  .filter(d=>rangeMatch(d.retail,f.retailMin,f.retailMax))
@@ -41,6 +44,7 @@ export function rankListings(rows,sort='value',opts={}){
  const byValue=(a,b)=>(metrics(b,opts).score??-1)-(metrics(a,opts).score??-1);
  return [...rows].sort((a,b)=>{
  // Unavailable products never outrank a currently listed product.
+ if(sort==='newest'){const era=Number(b.collection==='current')-Number(a.collection==='current');if(era)return era;const dates=(b.releaseDate||b.year?.slice(0,4)||'').localeCompare(a.releaseDate||a.year?.slice(0,4)||'');if(dates)return dates;}
  const availability=Number(a.status==='soldout')-Number(b.status==='soldout');
  if(availability)return availability;
  const ma=metrics(a,opts),mb=metrics(b,opts);
