@@ -4,3 +4,5 @@
 
 /* Release discovery */
 .sport-line{flex-wrap:wrap}.status.preorder,.status.announced{background:#f4e5bc;color:#634d1b}.product-photo-missing{min-height:230px;display:grid;place-items:center;background:#eee9df;color:#625b4f}.quick-filters{flex-wrap:wrap}
+
+.offer-store{padding:16px 20px;background:#f0e7d5;border-bottom:1px solid #ded1b7;display:grid;gap:5px}.offer-store>span{font-size:9px;letter-spacing:.15em;color:#72582c;font-weight:700}.offer-store a{font-size:19px;font-weight:750;color:#40311a;text-decoration:none;display:flex;justify-content:space-between;gap:12px}.offer-store a:hover{text-decoration:underline}.offer-store small{font-size:10px;color:#6b6252}.product-facts{grid-template-columns:repeat(auto-fit,minmax(135px,1fr))}.product-facts:empty{display:none}#modal .offer-store{border:1px solid #ded1b7;border-radius:8px;margin:16px 0}.card-metrics.product-facts strong{overflow-wrap:anywhere}
