@@ -8,6 +8,7 @@ import re
 import sys
 import urllib.parse
 import urllib.request
+import urllib.error
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -73,12 +74,17 @@ class ProductionEbay:
         try:
             with urllib.request.urlopen(request, timeout=20) as response:
                 document = ET.fromstring(response.read(8 * 1024 * 1024))
-        except Exception: raise InventoryError() from None
+        except urllib.error.HTTPError as error:
+            raise InventoryError('ebay_http_' + str(error.code)) from None
+        except TimeoutError: raise InventoryError('ebay_timeout') from None
+        except ET.ParseError: raise InventoryError('ebay_invalid_xml') from None
+        except Exception: raise InventoryError('ebay_transport_error') from None
         if text_at(document, 'e:Ack') not in ('Success', 'Warning'):
             codes = {text_at(e, 'e:ErrorCode') for e in document.findall('e:Errors', NS)}
             if codes & {'21916984', '931', '932', '16110'}: raise InventoryError('authorization_required')
             if codes & {'17', '1047'}: raise InventoryError('item_unavailable', 410)
-            raise InventoryError()
+            safe_codes=sorted(c for c in codes if re.fullmatch(r'\d{1,12}', c))
+            raise InventoryError('ebay_' + name.lower() + '_' + ('_'.join(safe_codes) or 'missing_ack'))
         return document
 
 def verify_seller(api):
