@@ -31,6 +31,7 @@ class Tests(unittest.TestCase):
         self.assertNotIn('description',result['products'][0])
         for _, fields in api.calls:
             self.assertTrue(fields['OutputSelector'])
+            self.assertFalse(any(s in ('Ack','Errors.ErrorCode') for s in fields['OutputSelector']))
             self.assertFalse(any('HighBidder' in s or 'PrivateNotes' in s or 'Email' in s for s in fields['OutputSelector']))
     def test_details_are_live_and_allowlisted(self):
         result=live.live_item(Fake(),'123456789001')

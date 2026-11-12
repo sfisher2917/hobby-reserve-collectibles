@@ -16,10 +16,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from sync_inventory import classify, details_from_item, NS, URN, text_at
 
 SELLER = 'hobbyreservecollectibles'
-COMMON = ['Ack', 'Errors.ErrorCode']
-SUMMARY = ['ItemID', 'Title', 'PictureDetails.GalleryURL', 'PictureDetails.PictureURL',
+COMMON = []  # Standard Ack/error metadata is returned automatically, not selectable.
+SUMMARY = ['ItemID', 'Title', 'PictureDetails.GalleryURL',
            'SellingStatus.CurrentPrice', 'QuantityAvailable', 'ListingType',
-           'ListingDetails.StartTime', 'ListingDetails.EndTime', 'PrimaryCategory.CategoryName']
+           'ListingDetails.StartTime', 'ListingDetails.EndTime']
 DETAIL = ['ItemID', 'Title', 'Seller.UserID', 'Description', 'PictureDetails.PictureURL',
           'PictureDetails.GalleryURL', 'PrimaryCategory.CategoryName', 'ConditionDisplayName',
           'ItemSpecifics.NameValueList', 'SellingStatus.CurrentPrice', 'SellingStatus.ListingStatus',
