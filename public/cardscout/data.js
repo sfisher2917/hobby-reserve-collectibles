@@ -1,6 +1,7 @@
+import {AVAILABLE} from './availability.js?v=20261112';
 import {RELEASES} from './releases.js?v=20261111b';
 import {PHOTOS} from './photos.js?v=20261111b';
-export const SNAPSHOT = '2026-11-11';
+export const SNAPSHOT = '2026-11-12';
 const da = 'https://www.dacardworld.com/sports-cards/';
 const sc = 'https://www.steelcitycollectibles.com/i/';
 const wood = {low:84,high:120,label:'James Wood rookie auto #RA-JWO, CGC authenticated',basis:'Historical sales: $84 Sep 29, 2025 and $120 Jul 17, 2026. Indicative comp range, not a current raw-card appraisal. Authentication and selling costs excluded; pull odds unknown.',url:'https://www.fanaticscollect.com/buy-now/309e68bb-9c08-44a1-9f49-50a72c800d97/2025-topps-chrome-james-wood-rookie-auto-ra-jwo-cgc-auth'};
@@ -23,4 +24,4 @@ const LEGACY = [
  {id:'chrome-update-hobby',sport:'Baseball',year:'2025',brand:'Topps',series:'Chrome Update',type:'Hobby',title:'Chrome Update Baseball Hobby',asking:219.95,autos:1,status:'soldout',source:'Steel City Collectibles',url:sc+'2025-topps-chrome-update-series-baseball-hobby-box',priceEvidence:'Out-of-stock displayed price',license:'MLB / MLBPA',licenseUrl:'https://www.topps.com/pages/odds',note:'Out of stock on seller page. Displayed price is a reference only. One autograph per box on average.',chaseNames:'Rookie autos · debut patch checklist'}
 ].map(d=>({...d,licensed:true,collection:'legacy',checked:SNAPSHOT,shipping:null,retail:null,reference:null,chase:null,...d,...PHOTOS[d.id]}));
 
-export const LISTINGS = [...RELEASES, ...LEGACY];
+export const LISTINGS = [...RELEASES, ...LEGACY].filter(d=>AVAILABLE[d.id]).map(d=>({...d,...AVAILABLE[d.id]}));

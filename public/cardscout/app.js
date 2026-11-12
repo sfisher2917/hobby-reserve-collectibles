@@ -1,5 +1,5 @@
 import {productFacts} from './product-facts.js?v=20261111c';
-import {LISTINGS,SNAPSHOT} from './data.js?v=20261111c';
+import {LISTINGS,SNAPSHOT} from './data.js?v=20261112';
 import {DEFAULT_WEIGHTS,effectivePrice,chaseMid,metrics,filterListings,rankListings} from './engine.js?v=20261111c';
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
