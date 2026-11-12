@@ -33,7 +33,7 @@ class SandboxEbay(Ebay):
                 if isinstance(value, dict): add(child, value)
                 else: child.text = str(value)
         add(root, {'RequesterCredentials': {'eBayAuthToken': self.token}, **fields})
-        request = urllib.request.Request(self.api_url, data=ET.tostring(root), headers={
+        request = urllib.request.Request(self.api_url, data=ET.tostring(root, encoding='utf-8', xml_declaration=True), headers={
             'Content-Type': 'text/xml', 'X-EBAY-API-CALL-NAME': name,
             'X-EBAY-API-SITEID': '0', 'X-EBAY-API-COMPATIBILITY-LEVEL': '1489', **credentials})
         with urllib.request.urlopen(request, timeout=60) as result:
@@ -41,6 +41,12 @@ class SandboxEbay(Ebay):
         if text_at(response, 'e:Ack') not in ('Success', 'Warning'):
             codes = [text_at(error, 'e:ErrorCode') for error in response.findall('e:Errors', NS)]
             print('eBay rejected', name, 'with error codes:', ', '.join(c for c in codes if re.fullmatch(r'\d+', c)))
+            for error in response.findall('e:Errors', NS):
+                message = text_at(error, 'e:LongMessage')
+                for value in [self.token, *credentials.values()]:
+                    if value: message = message.replace(value, '[REDACTED]')
+                message = re.sub(r'v\^1\.[^\s<>]+', '[REDACTED]', message)
+                print('eBay diagnostic:', message[:600])
             raise RuntimeError('Sandbox API rejected authorization or request.')
         return response
 
