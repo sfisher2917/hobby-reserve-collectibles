@@ -12,5 +12,8 @@ jobs:
       - name: Read Sandbox inventory without publishing
         env:
           EBAY_SANDBOX_ACCESS_TOKEN: ${{ secrets.EBAY_SANDBOX_ACCESS_TOKEN }}
+          EBAY_SANDBOX_CLIENT_ID: ${{ secrets.EBAY_SANDBOX_CLIENT_ID }}
+          EBAY_SANDBOX_DEV_ID: ${{ secrets.EBAY_SANDBOX_DEV_ID }}
+          EBAY_SANDBOX_CLIENT_SECRET: ${{ secrets.EBAY_SANDBOX_CLIENT_SECRET }}
           EBAY_SANDBOX_SELLER_ID: ${{ vars.EBAY_SANDBOX_SELLER_ID }}
         run: python3 scripts/test_ebay_sandbox.py

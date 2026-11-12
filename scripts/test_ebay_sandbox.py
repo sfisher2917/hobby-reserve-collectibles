@@ -12,13 +12,20 @@ class SandboxEbay(Ebay):
         self.token = os.environ.get('EBAY_SANDBOX_ACCESS_TOKEN','')
         seller = os.environ.get('EBAY_SANDBOX_SELLER_ID','')
         if not self.token or not seller.lower().startswith('testuser_'):
-            raise RuntimeError('Sandbox OAuth access token and TESTUSER_ seller required.')
+            raise RuntimeError('Sandbox user token and TESTUSER_ seller required.')
         os.environ['EBAY_SELLER_ID'] = seller
 
     def call(self, name, fields):
         # Developer Portal Auth'n'Auth tokens require XML credentials, not IAF.
         if not self.token.startswith('v^1.'):
             return super().call(name, fields)
+        credentials = {header: os.environ.get(key, '') for header, key in (
+            ('X-EBAY-API-APP-NAME', 'EBAY_SANDBOX_CLIENT_ID'),
+            ('X-EBAY-API-DEV-NAME', 'EBAY_SANDBOX_DEV_ID'),
+            ('X-EBAY-API-CERT-NAME', 'EBAY_SANDBOX_CLIENT_SECRET'))}
+        if not all(credentials.values()):
+            print('Auth n Auth requires the Sandbox App ID, Dev ID and Cert ID repository secrets.')
+            raise RuntimeError('Missing Sandbox application keyset.')
         root = ET.Element(name+'Request', xmlns=URN)
         def add(parent, values):
             for key, value in values.items():
@@ -28,7 +35,7 @@ class SandboxEbay(Ebay):
         add(root, {'RequesterCredentials': {'eBayAuthToken': self.token}, **fields})
         request = urllib.request.Request(self.api_url, data=ET.tostring(root), headers={
             'Content-Type': 'text/xml', 'X-EBAY-API-CALL-NAME': name,
-            'X-EBAY-API-SITEID': '0', 'X-EBAY-API-COMPATIBILITY-LEVEL': '1489'})
+            'X-EBAY-API-SITEID': '0', 'X-EBAY-API-COMPATIBILITY-LEVEL': '1489', **credentials})
         with urllib.request.urlopen(request, timeout=60) as result:
             response = ET.fromstring(result.read())
         if text_at(response, 'e:Ack') not in ('Success', 'Warning'):
