@@ -1,3 +1,7 @@
+# Production inventory update
+
+The production integration now uses request-time retrieval with no saved listing snapshots. See [PRODUCTION-INVENTORY.md](PRODUCTION-INVENTORY.md) for the current architecture, authorization and retention limits. Older snapshot setup instructions below are historical and must not be used to re-enable persistence.
+
 # Hobby Reserve Collectibles
 
 Premium black and metallic gold storefront using the original Hobby Reserve logo. Quality Cards. Trusted Service.

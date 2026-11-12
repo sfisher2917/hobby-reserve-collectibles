@@ -1,57 +1,10 @@
-name: Refresh eBay inventory
+name: Inventory sync retired - live requests only
 on:
-  schedule:
-    - cron: '7,37 * * * *'
   workflow_dispatch:
 permissions:
-  contents: write
-concurrency:
-  group: ebay-inventory
-  cancel-in-progress: false
+  contents: read
 jobs:
-  refresh:
+  notice:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
-        with:
-          path: source
-      - name: Check seller authorization
-        id: auth
-        env:
-          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
-          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
-          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
-        shell: bash
-        run: |
-          if [ -n "$EBAY_CLIENT_ID" ] && [ -n "$EBAY_CLIENT_SECRET" ] && [ -n "$EBAY_REFRESH_TOKEN" ]; then
-            echo 'ready=true' >> "$GITHUB_OUTPUT"
-          else
-            echo 'Seller authorization pending. Configure the three eBay repository secrets.' >> "$GITHUB_STEP_SUMMARY"
-          fi
-      - uses: actions/checkout@v4
-        if: steps.auth.outputs.ready == 'true'
-        with:
-          ref: inventory-data
-          path: data
-      - name: Export all active eBay listings
-        if: steps.auth.outputs.ready == 'true'
-        env:
-          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
-          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
-          EBAY_REFRESH_TOKEN: ${{ secrets.EBAY_REFRESH_TOKEN }}
-          EBAY_SELLER_ID: ${{ vars.EBAY_SELLER_ID || 'hobbyreservecollectibles' }}
-          FEATURED_ITEM_IDS: ${{ vars.FEATURED_ITEM_IDS }}
-          INVENTORY_PATH: data/inventory.json
-        run: python3 source/scripts/sync_inventory.py
-      - name: Publish inventory snapshot
-        if: steps.auth.outputs.ready == 'true'
-        working-directory: data
-        run: |
-          git config user.name 'Hobby Reserve Inventory'
-          git config user.email 'inventory@users.noreply.github.com'
-          git add inventory.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh active eBay inventory'
-            git push origin HEAD:inventory-data
-          fi
+      - run: echo 'Inventory is retrieved on demand. Scheduled exports and saved snapshots are disabled.' >> "$GITHUB_STEP_SUMMARY"
