@@ -23,6 +23,7 @@ class Tests(unittest.TestCase):
         self.assertEqual(h.sent['Referrer-Policy'],'same-origin')
         self.assertEqual(h.sent['X-Frame-Options'],'DENY')
         self.assertIn('no-store',h.sent['Cache-Control'])
+        self.assertIn("form-action 'self' https://auth.ebay.com https://signin.ebay.com;",h.sent['Content-Security-Policy'])
     def start(self):
         h=Handler({'Origin':oauth.ORIGIN})
         with patch.dict(os.environ,{'EBAY_CLIENT_ID':'owner-PRD-test','EBAY_REDIRECT_URI':'owner-runame'}):

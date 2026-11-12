@@ -41,7 +41,7 @@ def send_page(handler, status, title, content):
     for key,value in [('Content-Type','text/html; charset=utf-8'),('Content-Length',str(len(data))),
         ('Cache-Control','no-store, private'),('CDN-Cache-Control','no-store'),('Referrer-Policy','same-origin'),
         ('X-Content-Type-Options','nosniff'),('X-Frame-Options','DENY'),
-        ('Content-Security-Policy',"default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'")]:
+        ('Content-Security-Policy',"default-src 'none'; style-src 'unsafe-inline'; form-action 'self' https://auth.ebay.com https://signin.ebay.com; base-uri 'none'; frame-ancestors 'none'")]:
         handler.send_header(key,value)
     handler.end_headers();handler.wfile.write(data)
 
