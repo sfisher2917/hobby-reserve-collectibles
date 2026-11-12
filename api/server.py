@@ -1,10 +1,11 @@
-"""Free Render runtime. GET-only API; no databases, response caches or payload logs."""
+"""Read-only inventory API with owner OAuth bootstrap; no listing storage or payload logs."""
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
 import re
 import threading
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
+from oauth_connect import handle as oauth_handle
 from ebay_live import ProductionEbay, InventoryError, configured, live_catalog, live_item
 
 SLOTS = threading.BoundedSemaphore(3)
@@ -27,6 +28,8 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path.startswith('/oauth/'):
+            if oauth_handle(self,path,parse_qs(urlsplit(self.path).query)): return
         if path == '/health':
             return self.send_json(200, {'status':'ok', 'environment':'production',
                 'configured':configured(), 'listingStorage':'none'})
@@ -42,9 +45,12 @@ class Handler(BaseHTTPRequestHandler):
         except Exception:
             self.send_json(503, {'status':'unavailable', 'error':'upstream_unavailable'})
         finally: SLOTS.release()
-    def do_POST(self): self.send_json(405, {'error':'read_only'})
-    do_PUT = do_POST
-    do_DELETE = do_POST
+    def do_POST(self):
+        path=urlsplit(self.path).path
+        if path.startswith('/oauth/') and oauth_handle(self,path,{},'POST'): return
+        self.send_json(405, {'error':'read_only'})
+    def do_PUT(self): self.send_json(405, {'error':'read_only'})
+    do_DELETE = do_PUT
 
 if __name__ == '__main__':
     ThreadingHTTPServer(('0.0.0.0', int(os.environ.get('PORT', '10000'))), Handler).serve_forever()
