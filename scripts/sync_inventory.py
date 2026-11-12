@@ -84,7 +84,7 @@ class Ebay:
                 if isinstance(val, dict): add(e,val)
                 else: e.text = str(val)
         add(root, fields)
-        req = urllib.request.Request('https://api.ebay.com/ws/api.dll',data=ET.tostring(root),headers={'Content-Type':'text/xml','X-EBAY-API-CALL-NAME':name,'X-EBAY-API-SITEID':'0','X-EBAY-API-COMPATIBILITY-LEVEL':'1489','X-EBAY-API-IAF-TOKEN':self.token})
+        req = urllib.request.Request(getattr(self,'api_url','https://api.ebay.com/ws/api.dll'),data=ET.tostring(root),headers={'Content-Type':'text/xml','X-EBAY-API-CALL-NAME':name,'X-EBAY-API-SITEID':'0','X-EBAY-API-COMPATIBILITY-LEVEL':'1489','X-EBAY-API-IAF-TOKEN':self.token})
         for attempt in range(3):
             try:
                 with urllib.request.urlopen(req,timeout=60) as r: response=ET.fromstring(r.read())
