@@ -18,6 +18,11 @@ class Handler:
 
 class Tests(unittest.TestCase):
     def setUp(self):oauth.SESSIONS.clear()
+    def test_form_pages_preserve_same_origin_but_no_cross_site_referrer(self):
+        h=Handler();oauth.handle(h,'/oauth/connect',{})
+        self.assertEqual(h.sent['Referrer-Policy'],'same-origin')
+        self.assertEqual(h.sent['X-Frame-Options'],'DENY')
+        self.assertIn('no-store',h.sent['Cache-Control'])
     def start(self):
         h=Handler({'Origin':oauth.ORIGIN})
         with patch.dict(os.environ,{'EBAY_CLIENT_ID':'owner-PRD-test','EBAY_REDIRECT_URI':'owner-runame'}):
@@ -34,6 +39,8 @@ class Tests(unittest.TestCase):
         self.assertEqual(h.sent['Cache-Control'],'no-store')
     def test_wrong_origin_and_missing_state_rejected(self):
         h=Handler({'Origin':'https://other.example'})
+        oauth.handle(h,'/oauth/start',{},'POST');self.assertEqual(h.status,403)
+        h=Handler({'Origin':'null'})
         oauth.handle(h,'/oauth/start',{},'POST');self.assertEqual(h.status,403)
         h=Handler()
         with patch.object(oauth,'exchange') as exchange:

@@ -39,7 +39,7 @@ def send_page(handler, status, title, content):
     data=page(title,content).encode()
     handler.send_response(status)
     for key,value in [('Content-Type','text/html; charset=utf-8'),('Content-Length',str(len(data))),
-        ('Cache-Control','no-store, private'),('CDN-Cache-Control','no-store'),('Referrer-Policy','no-referrer'),
+        ('Cache-Control','no-store, private'),('CDN-Cache-Control','no-store'),('Referrer-Policy','same-origin'),
         ('X-Content-Type-Options','nosniff'),('X-Frame-Options','DENY'),
         ('Content-Security-Policy',"default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'")]:
         handler.send_header(key,value)
