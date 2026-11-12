@@ -1,4 +1,4 @@
-import{openProduct}from'./details.js?v=reserve-polish-20261112';
+import{openProduct}from'./details.js?v=reserve-polish-20261112b';
 import{loadPhoto}from'./photos.js?v=gallery-20261112';
 import{requestLive}from'./inventory-api.js?v=production-live-20261112';
 import{categories,safeUrl,selectProducts}from'./catalog.js';

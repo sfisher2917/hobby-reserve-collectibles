@@ -35,7 +35,7 @@ function showProduct(p,updatedAt,{pending=false,error=''}={}){
  const close=el('button','detail-close','Close ×');close.type='button';close.setAttribute('aria-label','Close product details');close.onclick=()=>dialog.close();header.append(close);
  const layout=el('div','detail-layout'),gallery=el('div','detail-gallery'),photos=productPhotos(p);
  let selected=0;const imageButton=el('button','photo-open');imageButton.type='button';imageButton.disabled=pending||!photos.length;imageButton.setAttribute('aria-label','Enlarge product photo');
- const image=el('img','detail-photo');image.alt=p.title;image.fetchPriority='high';const hint=el('span','photo-hint',pending?'Loading current details…':'Enlarge photo ↗');
+ const image=el('img','detail-photo');image.alt=p.title;image.fetchPriority='high';const hint=el('span','photo-hint',pending?'Loading current details…':'Enlarge photo ›');
  imageButton.append(image,hint);gallery.append(imageButton);
  const status=el('p','gallery-caption',photos.length?`Photo 1 of ${photos.length}`:'Photos available on eBay');status.setAttribute('aria-live','polite');
  const thumbs=el('div','detail-thumbs');thumbs.setAttribute('aria-label','Product photos');
@@ -78,7 +78,7 @@ function showProduct(p,updatedAt,{pending=false,error=''}={}){
  if(updatedAt)info.append(el('p','detail-capture',`Last checked ${new Date(updatedAt).toLocaleString()}. Final price and availability are confirmed on eBay.`));
  layout.append(gallery,info);
  const purchase=el('div','detail-purchase'),purchasePrice=el('div','purchase-price',money(p.price));purchasePrice.append(el('small','',p.listingType==='auction'?'Current bid':'Secure checkout on eBay'));
- const buy=el('a','button',pending?'View listing on eBay ↗':error?'Check listing on eBay ↗':p.listingType==='auction'?'View auction on eBay ↗':'View & buy on eBay ↗');buy.href=safeUrl(p.url);buy.target='_blank';buy.rel='noopener noreferrer';purchase.append(purchasePrice,buy);
+ const buy=el('a','button',pending?'View listing on eBay ›':error?'Check listing on eBay ›':p.listingType==='auction'?'View auction on eBay ›':'View & buy on eBay ›');buy.href=safeUrl(p.url);buy.target='_blank';buy.rel='noopener noreferrer';purchase.append(purchasePrice,buy);
  dialog.append(header,layout,purchase);history.replaceState(null,'','#item-'+p.id);document.body.classList.add('modal-open');
  if(!dialog.open)dialog.showModal();close.focus({preventScroll:true});
 }
@@ -87,7 +87,7 @@ function openLightbox(photos,index,title,returnFocus){
  lightbox.replaceChildren();let selected=index,zoomed=false;
  const header=el('div','lightbox-header'),counter=el('span','lightbox-counter'),tools=el('div','lightbox-tools');
  const zoom=el('button','lightbox-control','Zoom in');zoom.type='button';zoom.setAttribute('aria-pressed','false');
- const original=el('a','lightbox-original','Open full photo ↗');original.target='_blank';original.rel='noopener noreferrer';
+ const original=el('a','lightbox-original','Open full photo ›');original.target='_blank';original.rel='noopener noreferrer';
  const close=el('button','lightbox-control','Close ×');close.type='button';close.setAttribute('aria-label','Close full photo');close.onclick=()=>lightbox.close();tools.append(zoom,original,close);header.append(counter,tools);
  const stage=el('div','lightbox-stage'),image=el('img','lightbox-image');image.alt=title;stage.append(image);
  const footer=el('div','lightbox-footer'),prev=el('button','lightbox-control','← Previous'),next=el('button','lightbox-control','Next →');prev.type=next.type='button';
