@@ -20,7 +20,7 @@ TTL = 900
 
 def page(title, content):
     return ('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<title>'+escape(title)+' | Hobby Reserve</title><style>body{background:#090a0a;color:#ece7db;font:18px/1.7 system-ui;margin:0}main{max-width:760px;margin:50px auto;padding:24px}h1{color:#d7b56d}a{color:#e7c983}button{background:#d7b56d;color:#111;border:0;padding:16px 22px;font:inherit;border-radius:8px;cursor:pointer}textarea{box-sizing:border-box;width:100%;height:150px;background:#161712;color:#eee;border:1px solid #9e854e;padding:12px}small{color:#bbb}</style>'
+        '<title>'+escape(title)+' | Hobby Reserve</title><style>body{background:#090a0a;color:#ece7db;font:18px/1.7 system-ui;margin:0}main{max-width:760px;margin:50px auto;padding:24px}h1{color:#d7b56d}a{color:#e7c983}button,.button{display:inline-block;background:#d7b56d;color:#111;border:0;padding:16px 22px;font:inherit;border-radius:8px;cursor:pointer;text-decoration:none}textarea{box-sizing:border-box;width:100%;height:150px;background:#161712;color:#eee;border:1px solid #9e854e;padding:12px}small{color:#bbb}</style>'
         '<main><p>HOBBY RESERVE COLLECTIBLES</p><h1>'+escape(title)+'</h1>'+content+'</main></html>')
 
 def session_id(handler):
@@ -73,11 +73,13 @@ def handle(handler, path, query, method='GET'):
     if path == '/oauth/connect' and method == 'GET':
         send_page(handler,200,'Connect your eBay inventory',
             '<p>Authorize the real Hobby Reserve seller account. Sign-in and consent happen on eBay. This connection requests only the base Trading API scope and verifies the seller before accepting a token.</p>'
-            '<form method="post" action="/oauth/start"><button>Continue to eBay Production</button></form>'
+            '<a class="button" href="/oauth/start">Continue to eBay Production</a>'
             '<p>After approval, one final step saves the refresh credential in protected Render settings so the connection survives restarts. No listing data is saved.</p>')
         return True
-    if path == '/oauth/start' and method == 'POST':
-        if handler.headers.get('Origin') != ORIGIN:
+    if path == '/oauth/start' and method in ('GET','POST'):
+        # Starting consent creates only a transient browser-bound nonce. No
+        # account access is granted until the single-use callback is verified.
+        if method == 'POST' and handler.headers.get('Origin') != ORIGIN:
             send_page(handler,403,'Request not accepted','<p>Open the connection page and use its button.</p>');return True
         client,runame=[os.environ.get(k,'') for k in ('EBAY_CLIENT_ID','EBAY_REDIRECT_URI')]
         if not client or not runame:

@@ -20,10 +20,18 @@ class Tests(unittest.TestCase):
     def setUp(self):oauth.SESSIONS.clear()
     def test_form_pages_preserve_same_origin_but_no_cross_site_referrer(self):
         h=Handler();oauth.handle(h,'/oauth/connect',{})
+        self.assertIn(b'href="/oauth/start"',h.wfile.getvalue())
         self.assertEqual(h.sent['Referrer-Policy'],'same-origin')
         self.assertEqual(h.sent['X-Frame-Options'],'DENY')
         self.assertIn('no-store',h.sent['Cache-Control'])
         self.assertIn("form-action 'self' https://auth.ebay.com https://signin.ebay.com;",h.sent['Content-Security-Policy'])
+    def test_consent_start_is_standard_navigation_with_state(self):
+        h=Handler()
+        with patch.dict(os.environ,{'EBAY_CLIENT_ID':'owner-PRD-test','EBAY_REDIRECT_URI':'owner-runame'}):
+            oauth.handle(h,'/oauth/start',{},'GET')
+        self.assertEqual(h.status,303)
+        self.assertIn('state=',h.sent['Location'])
+        self.assertIn('HttpOnly',h.sent['Set-Cookie'])
     def start(self):
         h=Handler({'Origin':oauth.ORIGIN})
         with patch.dict(os.environ,{'EBAY_CLIENT_ID':'owner-PRD-test','EBAY_REDIRECT_URI':'owner-runame'}):
