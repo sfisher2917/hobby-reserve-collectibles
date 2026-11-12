@@ -135,15 +135,8 @@ def export(api, previous, now):
     return {'status':'ok','updatedAt':now.isoformat(),'seller':seller,'products':list(unique.values())}
 
 def main():
-    path = Path(os.environ.get('INVENTORY_PATH','data/inventory.json')); previous = json.loads(path.read_text()) if path.exists() else {}
-    payload = export(Ebay(),previous,datetime.now(timezone.utc))
-    path.parent.mkdir(parents=True,exist_ok=True)
-    temp = path.with_suffix('.tmp'); temp.write_text(json.dumps(payload,ensure_ascii=False,indent=2)); temp.replace(path)
-    print('Published snapshot with',len(payload['products']),'active listings.')
+    raise RuntimeError('Saved inventory exports are retired. Use the request-time Production API.')
 
 if __name__ == '__main__':
-    try: main()
-    except Exception as exc:
-        # Never print provider response bodies, request objects, or credentials.
-        print('Inventory sync failed. Previous snapshot was preserved. Check authorization, API availability, and export validation.',file=sys.stderr)
-        sys.exit(1)
+    print('Saved inventory exports are disabled. Use the request-time Production API.', file=sys.stderr)
+    sys.exit(1)
