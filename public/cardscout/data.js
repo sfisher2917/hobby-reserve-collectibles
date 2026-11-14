@@ -1,6 +1,6 @@
-import {AVAILABLE} from './availability.js?v=20261113';
-import {RELEASES} from './releases.js?v=20261113';
-import {PHOTOS} from './photos.js?v=20261113';
+import {AVAILABLE} from './availability.js?v=20261114';
+import {RELEASES} from './releases.js?v=20261114';
+import {PHOTOS} from './photos.js?v=20261114';
 export const SNAPSHOT = '2026-11-13';
 const da = 'https://www.dacardworld.com/sports-cards/';
 const sc = 'https://www.steelcitycollectibles.com/i/';

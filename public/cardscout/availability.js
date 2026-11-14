@@ -1,4 +1,3 @@
-// Exact-product price and ordering availability checked November 13, 2026.
 export const AVAILABLE = {
   "2026-panini-impeccable-wnba-basketball-hobby-box": {
     "asking": 674.95,
@@ -46,8 +45,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-27-topps-basketball-mega-box": {
-    "asking": 89.95,
-    "checked": "2026-11-13",
+    "asking": 84.95,
+    "checked": "2026-11-14",
     "status": "listed"
   },
   "2026-panini-prizm-wnba-trading-card-box-hobby": {
@@ -57,11 +56,6 @@ export const AVAILABLE = {
   },
   "pokemon-mega-evolution-delta-reign-booster-box": {
     "asking": 219.95,
-    "checked": "2026-11-13",
-    "status": "listed"
-  },
-  "pokemon-mega-evolution-delta-reign-elite-trainer-box": {
-    "asking": 89.95,
     "checked": "2026-11-13",
     "status": "listed"
   },
@@ -81,8 +75,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "magic-the-gathering-star-trek-collector-booster-box": {
-    "asking": 549.95,
-    "checked": "2026-11-13",
+    "asking": 499.95,
+    "checked": "2026-11-14",
     "status": "listed"
   },
   "select-mega": {
@@ -106,8 +100,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "select-blaster": {
-    "asking": 34.95,
-    "checked": "2026-11-13",
+    "asking": 29.95,
+    "checked": "2026-11-14",
     "status": "listed"
   },
   "score-blaster": {
@@ -126,8 +120,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "chrome-basketball-hanger": {
-    "asking": 69.95,
-    "checked": "2026-11-13",
+    "asking": 59.95,
+    "checked": "2026-11-14",
     "status": "listed"
   },
   "chrome-basketball-blaster": {
@@ -144,10 +138,5 @@ export const AVAILABLE = {
     "asking": 699.95,
     "checked": "2026-11-13",
     "status": "listed"
-  },
-  "one-piece-op18-booster-box": {
-    "asking": 214.99,
-    "checked": "2026-11-13",
-    "status": "preorder"
   }
 };
