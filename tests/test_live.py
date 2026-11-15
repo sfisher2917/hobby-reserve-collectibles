@@ -53,6 +53,16 @@ class Tests(unittest.TestCase):
             return original(name,fields)
         api.call=missing
         with self.assertRaises(live.InventoryError): live.live_catalog(api)
+    def test_confirmed_empty_catalog_has_zero_active_total(self):
+        api=Fake();original=api.call
+        def empty(name, fields):
+            if name=='GetMyeBaySelling':
+                return ET.fromstring('<GetMyeBaySellingResponse xmlns="'+live.URN+'"><Ack>Success</Ack><Timestamp>2026-11-15T03:00:00Z</Timestamp></GetMyeBaySellingResponse>')
+            return original(name,fields)
+        api.call=empty
+        result=live.live_catalog(api)
+        self.assertEqual(result['activeListingTotal'],0)
+        self.assertEqual(result['products'],[])
     def test_unsafe_item_rejected_without_network(self):
         api=Fake()
         with self.assertRaises(live.InventoryError): live.live_item(api,'../orders')

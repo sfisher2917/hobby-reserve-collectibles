@@ -128,6 +128,15 @@ def live_catalog(api):
                 'ActiveList.PaginationResult.TotalNumberOfEntries'] + ['ActiveList.ItemArray.Item.' + field for field in SUMMARY]})
         page_count = text_at(response, 'e:ActiveList/e:PaginationResult/e:TotalNumberOfPages')
         total = text_at(response, 'e:ActiveList/e:PaginationResult/e:TotalNumberOfEntries')
+        # eBay omits ActiveList entirely when the seller has no active listings.
+        # Accept only a successful, complete first-page response, never a malformed
+        # present-but-incomplete list or a missing page in an existing catalog.
+        if (page == 1 and response.tag == '{' + URN + '}GetMyeBaySellingResponse'
+                and text_at(response, 'e:Ack') == 'Success'
+                and text_at(response, 'e:Timestamp')
+                and response.find('e:ActiveList', NS) is None):
+            expected = 0
+            break
         if not page_count.isdigit() or not total.isdigit(): raise InventoryError('incomplete_inventory')
         pages, total = int(page_count), int(total)
         if pages > 125 or total >= 25000 or (expected is not None and expected != total):
