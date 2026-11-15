@@ -1,7 +1,7 @@
-import {AVAILABLE} from './availability.js?v=20261114';
-import {RELEASES} from './releases.js?v=20261114';
-import {PHOTOS} from './photos.js?v=20261114';
-export const SNAPSHOT = '2026-11-13';
+import {AVAILABLE} from './availability.js?v=20261115';
+import {RELEASES} from './releases.js?v=20261115';
+import {PHOTOS} from './photos.js?v=20261115';
+export const SNAPSHOT = '2026-11-15';
 const da = 'https://www.dacardworld.com/sports-cards/';
 const sc = 'https://www.steelcitycollectibles.com/i/';
 const wood = {low:84,high:120,label:'James Wood rookie auto #RA-JWO, CGC authenticated',basis:'Historical sales: $84 Sep 29, 2025 and $120 Jul 17, 2026. Indicative comp range, not a current raw-card appraisal. Authentication and selling costs excluded; pull odds unknown.',url:'https://www.fanaticscollect.com/buy-now/309e68bb-9c08-44a1-9f49-50a72c800d97/2025-topps-chrome-james-wood-rookie-auto-ra-jwo-cgc-auth'};
