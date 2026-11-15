@@ -26,6 +26,7 @@ class Tests(unittest.TestCase):
     def test_all_pages_and_no_private_fields(self):
         api=Fake(); result=live.live_catalog(api)
         self.assertEqual(len(result['products']),2)
+        self.assertEqual(result['activeListingTotal'],2)
         self.assertEqual([n for n,_ in api.calls],['GetUser','GetMyeBaySelling','GetMyeBaySelling'])
         self.assertNotIn('PRIVATE',json.dumps(result))
         self.assertNotIn('description',result['products'][0])

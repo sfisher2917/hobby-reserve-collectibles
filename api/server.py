@@ -7,7 +7,6 @@ import threading
 from urllib.parse import urlsplit, parse_qs
 from oauth_connect import handle as oauth_handle
 from ebay_live import ProductionEbay, InventoryError, configured, live_catalog, live_item
-from delist_once import handle as delist_handle
 
 SLOTS = threading.BoundedSemaphore(3)
 ORIGIN = 'https://hobby-reserve-collectibles.onrender.com'
@@ -29,7 +28,6 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
     def do_GET(self):
         path = urlsplit(self.path).path
-        if delist_handle(self, path, 'GET'): return
         if path.startswith('/oauth/'):
             if oauth_handle(self,path,parse_qs(urlsplit(self.path).query)): return
         if path == '/health':
@@ -49,7 +47,6 @@ class Handler(BaseHTTPRequestHandler):
         finally: SLOTS.release()
     def do_POST(self):
         path=urlsplit(self.path).path
-        if delist_handle(self, path, 'POST'): return
         if path.startswith('/oauth/') and oauth_handle(self,path,{},'POST'): return
         self.send_json(405, {'error':'read_only'})
     def do_PUT(self): self.send_json(405, {'error':'read_only'})

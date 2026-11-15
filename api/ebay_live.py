@@ -142,7 +142,8 @@ def live_catalog(api):
     available = [p for p in products.values() if p.get('quantity') != 0 and
         (not p['endTime'] or datetime.fromisoformat(p['endTime'].replace('Z', '+00:00')) > now)]
     return {'status':'ok', 'source':'ebay_live', 'updatedAt':now.isoformat(),
-            'seller':SELLER, 'storeListingCount':len(available), 'products':available}
+            'seller':SELLER, 'storeListingCount':len(available),
+            'activeListingTotal':expected, 'products':available}
 
 def live_item(api, item_id):
     if not re.fullmatch(r'\d{9,15}', item_id): raise InventoryError('invalid_item', 400)
