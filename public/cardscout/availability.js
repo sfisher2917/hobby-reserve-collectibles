@@ -14,11 +14,6 @@ export const AVAILABLE = {
     "checked": "2026-11-15",
     "status": "listed"
   },
-  "2026-27-topps-basketball-blaster-box": {
-    "asking": 29.95,
-    "checked": "2026-11-15",
-    "status": "listed"
-  },
   "2026-27-topps-basketball-hobby-box": {
     "asking": 249.95,
     "checked": "2026-11-15",
@@ -135,8 +130,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-midnight-football-hobby-box": {
-    "asking": 699.95,
-    "checked": "2026-11-15",
+    "asking": 689.95,
+    "checked": "2026-11-16",
     "status": "listed"
   }
 };
