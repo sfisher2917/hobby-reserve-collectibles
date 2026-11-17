@@ -35,8 +35,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-museum-collection-baseball-hobby-box": {
-    "asking": 679.95,
-    "checked": "2026-11-15",
+    "asking": 639.95,
+    "checked": "2026-11-17",
     "status": "listed"
   },
   "2026-27-topps-basketball-mega-box": {
@@ -50,18 +50,13 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "pokemon-mega-evolution-delta-reign-booster-box": {
-    "asking": 219.95,
-    "checked": "2026-11-15",
-    "status": "listed"
-  },
-  "pokemon-mega-evolution-delta-reign-6-pack-booster-bundle": {
-    "asking": 49.95,
-    "checked": "2026-11-15",
+    "asking": 199.95,
+    "checked": "2026-11-17",
     "status": "listed"
   },
   "disney-lorcana-hyperia-city-booster-box": {
-    "asking": 149.95,
-    "checked": "2026-11-15",
+    "asking": 159.95,
+    "checked": "2026-11-17",
     "status": "listed"
   },
   "magic-the-gathering-star-trek-play-booster-box": {
