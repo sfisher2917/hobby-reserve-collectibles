@@ -1,7 +1,7 @@
 export const AVAILABLE = {
   "2026-panini-impeccable-wnba-basketball-hobby-box": {
-    "asking": 674.95,
-    "checked": "2026-11-15",
+    "asking": 719.95,
+    "checked": "2026-11-19",
     "status": "listed"
   },
   "2026-topps-cosmic-chrome-baseball-hobby-box": {
@@ -10,8 +10,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-heritage-football-mega-box": {
-    "asking": 74.95,
-    "checked": "2026-11-15",
+    "asking": 54.95,
+    "checked": "2026-11-19",
     "status": "listed"
   },
   "2026-27-topps-basketball-hobby-box": {
@@ -30,8 +30,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-inception-football-hobby-box": {
-    "asking": 479.95,
-    "checked": "2026-11-15",
+    "asking": 399.95,
+    "checked": "2026-11-19",
     "status": "listed"
   },
   "2026-topps-museum-collection-baseball-hobby-box": {
@@ -60,13 +60,13 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "magic-the-gathering-star-trek-play-booster-box": {
-    "asking": 124.95,
-    "checked": "2026-11-15",
+    "asking": 114.95,
+    "checked": "2026-11-19",
     "status": "listed"
   },
   "magic-the-gathering-star-trek-collector-booster-box": {
-    "asking": 499.95,
-    "checked": "2026-11-15",
+    "asking": 449.95,
+    "checked": "2026-11-19",
     "status": "listed"
   },
   "select-mega": {
@@ -130,8 +130,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-chrome-football-hobby-box": {
-    "asking": 674.95,
-    "checked": "2026-11-18",
+    "asking": 649.95,
+    "checked": "2026-11-19",
     "status": "listed",
     "releaseDate": "2026-11-18",
     "note": "Released November 18, 2026. Hobby box: 20 packs, 4 cards per pack; 1 autograph per box on average. Exact Dave & Adam\u2019s offer; shipping and tax may apply."
