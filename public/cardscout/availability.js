@@ -125,8 +125,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-midnight-football-hobby-box": {
-    "asking": 689.95,
-    "checked": "2026-11-16",
+    "asking": 624.95,
+    "checked": "2026-11-20",
     "status": "listed"
   },
   "2026-topps-chrome-football-hobby-box": {
