@@ -30,8 +30,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-inception-football-hobby-box": {
-    "asking": 399.95,
-    "checked": "2026-11-19",
+    "asking": 379.95,
+    "checked": "2026-11-21",
     "status": "listed"
   },
   "2026-topps-museum-collection-baseball-hobby-box": {
@@ -130,8 +130,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-chrome-football-hobby-box": {
-    "asking": 649.95,
-    "checked": "2026-11-19",
+    "asking": 584.95,
+    "checked": "2026-11-21",
     "status": "listed",
     "releaseDate": "2026-11-18",
     "note": "Released November 18, 2026. Hobby box: 20 packs, 4 cards per pack; 1 autograph per box on average. Exact Dave & Adam\u2019s offer; shipping and tax may apply."
