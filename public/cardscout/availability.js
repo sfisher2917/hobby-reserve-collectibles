@@ -40,8 +40,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-27-topps-basketball-mega-box": {
-    "asking": 84.95,
-    "checked": "2026-11-15",
+    "asking": 64.95,
+    "checked": "2026-11-24",
     "status": "listed"
   },
   "2026-panini-prizm-wnba-trading-card-box-hobby": {
