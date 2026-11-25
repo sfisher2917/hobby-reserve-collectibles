@@ -45,13 +45,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-panini-prizm-wnba-trading-card-box-hobby": {
-    "asking": 349.95,
-    "checked": "2026-11-15",
-    "status": "listed"
-  },
-  "pokemon-mega-evolution-delta-reign-booster-box": {
-    "asking": 199.95,
-    "checked": "2026-11-17",
+    "asking": 319.95,
+    "checked": "2026-11-25",
     "status": "listed"
   },
   "disney-lorcana-hyperia-city-booster-box": {
@@ -125,8 +120,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-midnight-football-hobby-box": {
-    "asking": 624.95,
-    "checked": "2026-11-20",
+    "asking": 639.95,
+    "checked": "2026-11-25",
     "status": "listed"
   },
   "2026-topps-chrome-football-hobby-box": {
