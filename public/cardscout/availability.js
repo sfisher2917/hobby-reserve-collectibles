@@ -5,8 +5,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-topps-cosmic-chrome-baseball-hobby-box": {
-    "asking": 1024.95,
-    "checked": "2026-11-15",
+    "asking": 974.95,
+    "checked": "2026-11-27",
     "status": "listed"
   },
   "2026-topps-heritage-football-mega-box": {
@@ -15,8 +15,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-27-topps-basketball-hobby-box": {
-    "asking": 249.95,
-    "checked": "2026-11-15",
+    "asking": 199.95,
+    "checked": "2026-11-27",
     "status": "listed"
   },
   "2026-27-topps-basketball-hobby-jumbo-box": {
