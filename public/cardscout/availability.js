@@ -15,8 +15,8 @@ export const AVAILABLE = {
     "status": "listed"
   },
   "2026-27-topps-basketball-hobby-box": {
-    "asking": 199.95,
-    "checked": "2026-11-27",
+    "asking": 249.95,
+    "checked": "2026-11-28",
     "status": "listed"
   },
   "2026-27-topps-basketball-hobby-jumbo-box": {
@@ -129,6 +129,6 @@ export const AVAILABLE = {
     "checked": "2026-11-22",
     "status": "listed",
     "releaseDate": "2026-11-18",
-    "note": "Released November 18, 2026. Hobby box: 20 packs, 4 cards per pack; 1 autograph per box on average. Exact Dave & Adam\u2019s offer; shipping and tax may apply."
+    "note": "Released November 18, 2026. Hobby box: 20 packs, 4 cards per pack; 1 autograph per box on average. Exact Dave & Adam’s offer; shipping and tax may apply."
   }
 };
